@@ -1,0 +1,106 @@
+"umc_rotation"
+{
+    "Attack & Defend"
+    {
+        "maps_invote" "1"
+        "next_mapgroup" "Payload"
+
+        "cp_dustbowl"
+        {
+            "weight"    "2"
+        }
+
+        "cp_gravelpit" {}
+
+        "cp_steel" {}
+
+        "cp_egypt_final" {}
+
+        "cp_junction_final" {}
+
+        "cp_gorge"
+        {
+            "max_players"    "16"
+        }
+    }
+
+    Payload{
+
+        "maps_invote"    "1"
+
+        "pl_goldrush"
+        {
+            "weight"    "2"
+        }
+
+        "pl_badwater"
+        {
+            "weight"    "4"
+        }
+
+        "pl_thundermountain" {}
+
+        "pl_upward" {}
+
+        "pl_hoodoo_final" {}
+    }
+
+    "5-Point CP (Push)"
+    {
+        "maps_invote"         "1"
+        "default_min_players" "2"
+        "group_weight"        "2"
+
+        "cp_granary" {}
+
+        "cp_well"
+        {
+            "weight"    ".5"
+            "min_players"     "12"
+        }
+
+        "cp_coldfront" {}
+
+        "cp_yukon_final" {}
+
+        "cp_badlands" {}
+
+        "cp_fastlane" {}
+    }
+
+    "Capture The Flag"
+    {
+        "ctf_2fort" {}
+
+        "ctf_well"
+        {
+            "min_time"    "1200"
+            "max_time"   "2359"
+        }
+
+        "ctf_turbine" {}
+
+        "ctf_sawmill" {}
+    }
+
+    "Payload Race"
+    {
+        "default_min_time"    "0000"
+        "default_max_time"    "1200"
+
+        "plr_pipeline" {}
+
+        "plr_hightower" {}
+    }
+
+    "King of the Hill"
+    {
+        "command"  "mp_timelimit 0"
+
+        "koth_sawmill" {}
+
+        "koth_nucleus" {}
+
+        "koth_viaduct" {}
+    }
+}
