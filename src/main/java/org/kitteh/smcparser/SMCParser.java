@@ -61,7 +61,7 @@ public final class SMCParser {
      * @throws InvalidSMCException for IO errors or invalid SMC content
      */
     public static Map<String, Object> parse(InputStream stream) {
-        final char[] buffer = new char[256];
+        final char[] buffer = new char[8192];
         final StringBuilder out = new StringBuilder();
         try (final InputStream input = stream; final Reader reader = new InputStreamReader(input, "UTF-8")) {
             int read;
