@@ -31,14 +31,11 @@ import java.util.Map;
 public final class UMCParseTest {
     @Test
     public void umc() throws IOException {
-        Map<String, Object> map = SMCParser.parse(this.getClass().getResourceAsStream("/umc.smc"));
+        SMCNode node = SMCParser.parse(this.getClass().getResourceAsStream("/umc.smc"));
         try {
-            Map<String, Object> umc = getMap(map, "umc_rotation");
-            Map<String, Object> cp5 = getMap(umc, "5-Point CP (Push)");
-            Map<String, Object> well = getMap(cp5, "cp_well");
-            Assert.assertEquals("12", well.get("min_players"));
+            Assert.assertEquals("12", node.getNode("5-Point CP (Push)").getNode("cp_well").getString("min_players").getValue());
         } catch (Exception e) {
-            throw new AssertionError("Failed to acquire :" + e.getMessage());
+            throw new AssertionError("Failed to acquire :" + e.getMessage(), e);
         }
     }
 

@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
@@ -60,7 +59,7 @@ public final class SMCParser {
      * @return a map of the SMC content
      * @throws InvalidSMCException for IO errors or invalid SMC content
      */
-    public static Map<String, Object> parse(InputStream stream) {
+    public static SMCNode parse(InputStream stream) {
         final char[] buffer = new char[8192];
         final StringBuilder out = new StringBuilder();
         try (final InputStream input = stream; final Reader reader = new InputStreamReader(input, "UTF-8")) {
@@ -81,7 +80,7 @@ public final class SMCParser {
      * @return a map of the SMC content
      * @throws InvalidSMCException for IO errors or invalid SMC content
      */
-    public static Map<String, Object> parse(String input) {
+    public static SMCNode parse(String input) {
         Matcher matcher = PATTERN.matcher(input);
         Queue<String> sequence = new LinkedList<>();
         while (matcher.find()) {
@@ -92,10 +91,10 @@ public final class SMCParser {
             sequence.add(found);
         }
 
-        return getMap(sequence);
+        return (SMCNode) getElement(sequence);
     }
 
-    private static Pair<String, Object> getPair(Queue<String> queue) {
+    private static SMCElement getElement(Queue<String> queue) {
         String first = queue.poll();
         if (first.equals("}")) {
             return null;
@@ -112,7 +111,7 @@ public final class SMCParser {
             throw new InvalidSMCException("Encountered unexpected end of file. Ended on a key!");
         }
         if (second.equals("{")) {
-            return new Pair<>(first, getMap(queue));
+            return getNode(first, queue);
         }
         if (second.equals("}")) {
             throw new InvalidSMCException("Encountered unexpected \"}\" as a value for key \"" + first + "\"");
@@ -121,17 +120,16 @@ public final class SMCParser {
         // All that's left is Strings for the value
         second = stripQuote(second);
 
-        return new Pair<>(first, second);
-
+        return new SMCString(first, second);
     }
 
-    private static Map<String, Object> getMap(Queue<String> queue) {
-        Map<String, Object> map = new LinkedHashMap<>();
-        Pair<String, Object> pair;
-        while (!queue.isEmpty() && (pair = getPair(queue)) != null) {
-            map.put(pair.getLeft(), pair.getRight());
+    private static SMCNode getNode(String key, Queue<String> queue) {
+        SMCNode node = new SMCNode(key);
+        SMCElement element;
+        while (!queue.isEmpty() && (element = getElement(queue)) != null) {
+            node.getValue().add(element);
         }
-        return map;
+        return node;
     }
 
     private static String stripQuote(String input) {
