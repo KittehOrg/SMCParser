@@ -23,7 +23,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.Queue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -56,7 +55,7 @@ public final class SMCParser {
      * Parses a given InputStream of SMC content.
      *
      * @param stream an input stream providing SMC content
-     * @return a map of the SMC content
+     * @return the SMC content in SMCNode form
      * @throws InvalidSMCException for IO errors or invalid SMC content
      */
     public static SMCNode parse(InputStream stream) {
@@ -77,7 +76,7 @@ public final class SMCParser {
      * Parses a given String of SMC content.
      *
      * @param input SMC content
-     * @return a map of the SMC content
+     * @return the SMC content in SMCNode form
      * @throws InvalidSMCException for IO errors or invalid SMC content
      */
     public static SMCNode parse(String input) {
