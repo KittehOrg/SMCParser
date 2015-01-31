@@ -31,24 +31,6 @@ import java.util.regex.Pattern;
  * Parses SourceMod Configuration content to a Map.
  */
 public final class SMCParser {
-    private static final class Pair<Left, Right> {
-        private final Left left;
-        private final Right right;
-
-        Pair(Left left, Right right) {
-            this.left = left;
-            this.right = right;
-        }
-
-        Left getLeft() {
-            return this.left;
-        }
-
-        Right getRight() {
-            return this.right;
-        }
-    }
-
     private static final Pattern PATTERN = Pattern.compile("(\"[^\"]*\")|([^\" \\t\\r\\n\\{\\}]+)|\\{|\\}|(//[^\\n]*\\r?\\n)");
 
     /**
