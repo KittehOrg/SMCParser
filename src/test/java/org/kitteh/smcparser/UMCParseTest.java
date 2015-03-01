@@ -20,6 +20,7 @@ package org.kitteh.smcparser;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.kitteh.smcparser.element.SMCNode;
 
 import java.io.IOException;
 import java.util.Map;

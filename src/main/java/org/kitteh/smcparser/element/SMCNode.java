@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Kitteh SMC Parser.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.kitteh.smcparser;
+package org.kitteh.smcparser.element;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;

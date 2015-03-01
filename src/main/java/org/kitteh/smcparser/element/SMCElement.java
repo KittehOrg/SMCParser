@@ -16,10 +16,30 @@
  * You should have received a copy of the GNU General Public License
  * along with Kitteh SMC Parser.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.kitteh.smcparser;
+package org.kitteh.smcparser.element;
 
-public final class SMCString extends SMCElement<String> {
-    public SMCString(String key, String value) {
-        super(key, value);
+public abstract class SMCElement<Type> {
+    private String key;
+    private Type value;
+
+    protected SMCElement(String key, Type value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public String getKey() {
+        return this.key;
+    }
+
+    public Type getValue() {
+        return this.value;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public void setValue(Type value) {
+        this.value = value;
     }
 }

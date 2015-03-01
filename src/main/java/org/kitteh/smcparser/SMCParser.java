@@ -18,6 +18,10 @@
  */
 package org.kitteh.smcparser;
 
+import org.kitteh.smcparser.element.SMCElement;
+import org.kitteh.smcparser.element.SMCNode;
+import org.kitteh.smcparser.element.SMCString;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
