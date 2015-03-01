@@ -35,6 +35,7 @@ public final class UMCParseTest {
         SMCNode node = SMCParser.parse(this.getClass().getResourceAsStream("/umc.smc"));
         try {
             Assert.assertEquals("12", node.getNode("5-Point CP (Push)").getNode("cp_well").getString("min_players").getValue());
+            Assert.assertNull("pl_upward included though commented", node.getNode("Payload").getNode("pl_upward"));
         } catch (Exception e) {
             throw new AssertionError("Failed to acquire :" + e.getMessage(), e);
         }

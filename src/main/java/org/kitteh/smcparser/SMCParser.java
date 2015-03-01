@@ -35,7 +35,7 @@ import java.util.regex.Pattern;
  * Parses SourceMod Configuration content to a Map.
  */
 public final class SMCParser {
-    private static final Pattern PATTERN = Pattern.compile("(\"[^\"]*\")|([^\" \\t\\r\\n\\{\\}]+)|\\{|\\}|(//[^\\n]*\\r?\\n)");
+    private static final Pattern PATTERN = Pattern.compile("(//[^\\n]*\\r?\\n)|(\"[^\"]*\")|([^\" \\t\\r\\n\\{\\}]+)|\\{|\\}");
 
     /**
      * Parses a given InputStream of SMC content.
