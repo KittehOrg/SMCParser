@@ -63,7 +63,7 @@ public final class SMCParser {
      *
      * @param input SMC content
      * @return the SMC content in SMCNode form
-     * @throws InvalidSMCException for IO errors or invalid SMC content
+     * @throws InvalidSMCException for invalid SMC content
      */
     public static SMCNode parse(String input) {
         Matcher matcher = PATTERN.matcher(input);
