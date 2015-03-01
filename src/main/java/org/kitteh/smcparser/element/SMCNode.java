@@ -66,4 +66,17 @@ public final class SMCNode extends SMCElement<List<SMCElement>> {
         }
         return null;
     }
+
+    @Override
+    protected void outputValue(StringBuilder builder, String indent) {
+        if (this.getValue().isEmpty()) {
+            builder.append(" { }\n");
+        } else {
+            builder.append('\n');
+            builder.append(indent).append("{\n");
+            final String newIndent = indent + SMCElement.INDENT;
+            this.getValue().forEach(e -> e.toString(builder, newIndent));
+            builder.append(indent).append("}\n");
+        }
+    }
 }

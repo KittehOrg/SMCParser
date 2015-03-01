@@ -22,4 +22,9 @@ public final class SMCString extends SMCElement<String> {
     public SMCString(String key, String value) {
         super(key, value);
     }
+
+    @Override
+    protected void outputValue(StringBuilder builder, String indent) {
+        builder.append(" \"").append(this.getValue()).append("\"\n");
+    }
 }

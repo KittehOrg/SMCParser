@@ -41,6 +41,16 @@ public final class UMCParseTest {
         }
     }
 
+    @Test
+    public void validToString() {
+        SMCNode node = SMCParser.parse(this.getClass().getResourceAsStream("/umc.smc"));
+        try {
+            SMCParser.parse(node.toString());
+        } catch (Exception e) {
+            throw new AssertionError("Failed to toString", e);
+        }
+    }
+
     private Map<String, Object> getMap(Map<String, Object> input, String key) {
         @SuppressWarnings("unchecked")
         Map<String, Object> map = (Map<String, Object>) input.get(key);

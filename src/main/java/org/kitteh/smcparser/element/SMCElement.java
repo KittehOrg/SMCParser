@@ -19,27 +19,79 @@
 package org.kitteh.smcparser.element;
 
 public abstract class SMCElement<Type> {
+    protected static final String INDENT = "    ";
+
     private String key;
     private Type value;
 
     protected SMCElement(String key, Type value) {
-        this.key = key;
-        this.value = value;
+        this.setKey(key);
+        this.setValue(value);
     }
 
+    protected final void checkString(Object object) {
+        if (object instanceof String) {
+            this.checkString((String) object);
+        }
+    }
+
+    protected final void checkString(String string) {
+        if (string.contains("\"")) {
+            throw new IllegalArgumentException("Quote character may not be used");
+        }
+    }
+
+    /**
+     * Gets the key.
+     *
+     * @return the key
+     */
     public String getKey() {
         return this.key;
     }
 
+    /**
+     * Gets the value.
+     *
+     * @return the value
+     */
     public Type getValue() {
         return this.value;
     }
 
-    public void setKey(String key) {
+    /**
+     * Sets the key of this element.
+     *
+     * @param key new key for the element
+     * @throws IllegalArgumentException if a " character is present
+     */
+    public final void setKey(String key) {
+        this.checkString(key);
         this.key = key;
     }
 
-    public void setValue(Type value) {
+    /**
+     * Sets the value of this element.
+     *
+     * @param value new value for the element
+     * @throws IllegalArgumentException if a " character is present
+     */
+    public final void setValue(Type value) {
+        this.checkString(value);
         this.value = value;
     }
+
+    @Override
+    public final String toString() {
+        StringBuilder builder = new StringBuilder();
+        toString(builder, "");
+        return builder.toString();
+    }
+
+    protected void toString(StringBuilder builder, String indent) {
+        builder.append(indent).append('"').append(this.key).append('"');
+        this.outputValue(builder, indent);
+    }
+
+    protected abstract void outputValue(StringBuilder builder, String indent);
 }
